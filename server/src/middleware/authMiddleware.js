@@ -3,7 +3,7 @@ import User from "../models/User.js";
 
 //verify JWT
 
-const protect = async (req, res, next) => {
+export const protect = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
@@ -37,9 +37,9 @@ const protect = async (req, res, next) => {
 
 // role authorization
 
-const authorizeRole = (...roles) => {
+export const authorizeRole = (...roles) => {
   return (req, res, next) => {
-    if (!req.user || roles.includes(req.user.role)) {
+    if (!req.user || !roles.includes(req.user.role)) {
       return res.status(403).json({
         message: "You are not authorized",
       });
@@ -48,4 +48,3 @@ const authorizeRole = (...roles) => {
   };
 };
 
-module.exports = { protect, authorizeRole };
