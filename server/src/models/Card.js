@@ -24,7 +24,7 @@ const cardSchema = new Schema(
       required: true,
     },
     isDeleted: {
-      type: Boolena,
+      type: Boolean,
       default: false,
     },
   },
