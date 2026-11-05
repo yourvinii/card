@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import userRouter from "./routes/authRoutes.js";
 import cardRouter from "./routes/cardRoutes.js";
+import adminRouter from "./routes/adminRoutes.js";
 
 const app = express();
 
@@ -18,4 +19,6 @@ app.get("/", (req, res) => {
 app.use("/api/cards", cardRouter);
 
 app.use("/api/auth", userRouter);
+
+app.use("/api/admin", adminRouter);
 export default app;

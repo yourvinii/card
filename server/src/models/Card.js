@@ -19,8 +19,8 @@ const cardSchema = new Schema(
       default: "",
     },
     user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     isDeleted: {
