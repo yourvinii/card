@@ -12,7 +12,7 @@ const Navbar = () => {
         <Link to={"/contact"}>Contact</Link>
       </div>
       <div className="flex gap-12">
-        <Link to={"/login"}>Login</Link>
+        <Link to={"/"}>Login</Link>
         <Link to={"/register"}>Register</Link>
       </div>
     </nav>
