@@ -44,12 +44,12 @@ export const createCard = async (req, res) => {
 
 export const getMyCard = async (req, res) => {
   try {
-    const card = await Card.find({
+    const cards = await Card.find({
       user: req.user._id,
       isDeleted: false,
     }).sort({ createdAt: -1 });
 
-    res.status(200).json({ card });
+    res.status(200).json({ cards });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
