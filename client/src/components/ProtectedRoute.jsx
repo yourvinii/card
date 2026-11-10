@@ -15,7 +15,6 @@ function ProtectedRoute({ allowedRoles }) {
     if (!token || !user) {
         return <Navigate to="/" replace />;
     }
-
     if (!allowedRoles.includes(user.role)) {
         return (
             <Navigate
