@@ -1,38 +1,52 @@
-import { createBrowserRouter } from "react-router";
-import MainLayout from "./layout/MainLayout";
+import { createBrowserRouter } from "react-router-dom";
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserDashboard from "./pages/UserDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import CardHistory from "./pages/CardHistory";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MainLayout />,
-    children: [
-      {
-        index: true,
-        element: <Login />,
-      },
-      {
+    {
+        path: "/",
+        element: <Login />
+    },
+    {
         path: "/register",
-        element: <Register />,
-      },
-      {
-        path: "/dashboard",
-        element: <UserDashboard />,
-      },
-      {
-        path: "/admin",
-        element: <AdminDashboard />,
-      },
-      {
-        path: "/history",
-        element: <CardHistory />,
-      },
-    ],
-  },
+        element: <Register />
+    },
+
+    // USER ROUTES
+    {
+        element: <ProtectedRoute allowedRoles={["user"]} />,
+        children: [
+            {
+                path: "/dashboard",
+                element: <UserDashboard />
+            },
+            {
+                path: "/history",
+                element: <CardHistory />
+            }
+        ]
+    },
+
+    // ADMIN ROUTES
+    {
+        element: <ProtectedRoute allowedRoles={["admin"]} />,
+        children: [
+            {
+                path: "/admin",
+                element: <AdminDashboard />
+            },
+            {
+                path: "/admin/history",
+                element: <CardHistory />
+            }
+        ]
+    }
 ]);
 
 export default router;
